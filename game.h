@@ -19,6 +19,24 @@ typedef struct player {
     struct move* head;
 } move;
 
-void board();
+
+
+
+
+void status();
+void updmove(hole (*board)[24][24],int player,int row ,int col);
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 #endif

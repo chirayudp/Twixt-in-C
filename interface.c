@@ -4,32 +4,65 @@
 #include "game.h"
 
 int main(){
+// inirtialising to mt holes.
 hole board[24][24];
+reset(&board);
 
-for (int i = 0; i < 24; i++)
-{
-    for (int j = 0; j < 24; j++){
-        (board)[i][j].role=0;
-    }
+char task[50];
+printf("~|| TRIXT ||~\n~> choose ur color[R/B] ");
+printf("~> ");
+fgets(task,sizeof(task),stdin);
+task[strcspn(task,"\n")]=0;
+player *p=malloc(sizeof(player));
+
+if (strcmp(task, "b") == 0 || strcmp(task, "B") == 0){
+  
+    p->clr=2;
 }
-char cmd[20];
+else if (strcmp(task,"r") == 0 || strcmp(task, "R") == 0){ 
+    p->clr=1;
+}
+else {
+    p->clr=1;
+    printf("ur color is Red");
+}
+
+
 while(1){
     printf("~>");
-    fgets(cmd,sizeof(cmd),stdin);
-    cmd[strcspn(cmd,"\n")]=0;
+    fgets(task,sizeof(task),stdin);
+    task[strcspn(task,"\n")]=0;
+    char *cmd=strtok(task," ");
+    
+    if (strcmp(cmd,"help")==0 ){
+        printf(" status - displays the board\n");
+        printf(" exit - to exit the game\n");
+        printf(" resign - if u want to give up\n");
+        printf(" pegin - to place the peg :: format, pegin row col\n");
+    }
+    
     if (strcmp(cmd,"status")==0 ){
         status(&board);
     }
     if (strcmp(cmd,"exit")==0 ){
-        printf("\n");
-        break;
+        printf(" u lose to me\n");
+        break; 
+    }
+
+    if (strcmp(cmd,"resign")==0 ){
+        printf(" you resigned!\n");
+        status(&board);
+        printf(" I win :)\n");
+        printf("~>");reset(&board);
         
     }
-    if (strcmp(cmd,"resign")==0 ){
-        printf("you have resigned!\n");
-        status(&board);
-        printf("I win :)\n");break;
-        
+
+    if (strcmp(cmd,"pegin")==0 ){
+        char *row=strtok(NULL," ");
+        char *col = strtok(NULL," ");
+        int r=atoi(row),c = atoi(col);
+        // int c = atoi(col);
+        updmove(&board,p->clr,r,c);
     }
 }
 }

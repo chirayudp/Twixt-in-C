@@ -16,14 +16,14 @@ typedef struct move {
 
 typedef struct player {
     int clr;
-    struct move* head;
-} move;
+    struct player* head;
+} player;
 
 
 
 
 
-void status();
+void status(hole (*board)[24][24]);
 void updmove(hole (*board)[24][24],int player,int row ,int col);
 
 

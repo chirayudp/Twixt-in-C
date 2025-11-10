@@ -5,7 +5,7 @@ CFLG = -Wall -Wextra -std=c11
 # Object files
 OBG = interface.o game.o
 # Final executable name
-TARG = run
+TARG = torun
 	
 # Default rule
 $(TARG): $(OBG)

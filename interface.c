@@ -9,7 +9,7 @@ hole board[24][24];
 reset(&board);
 
 char task[50];
-printf("~|| TRIXT ||~\n~> choose ur color[R/B] ");
+printf("~|| TRIXT ||~\n~> choose ur color[R/B]\n");
 printf("~> ");
 fgets(task,sizeof(task),stdin);
 task[strcspn(task,"\n")]=0;
@@ -24,7 +24,7 @@ else if (strcmp(task,"r") == 0 || strcmp(task, "R") == 0){
 }
 else {
     p->clr=1;
-    printf("ur color is Red");
+    printf("ur color is Red\n");
 }
 
 
@@ -60,9 +60,13 @@ while(1){
     if (strcmp(cmd,"pegin")==0 ){
         char *row=strtok(NULL," ");
         char *col = strtok(NULL," ");
+        if ( row==NULL || col == NULL )
+        {
+            printf("!!! not a valid hole :)\n");
+            continue;
+        }
         int r=atoi(row),c = atoi(col);
-        // int c = atoi(col);
-        updmove(&board,p->clr,r,c);
+        updmove(&board,p->clr,r-1,c-1);
     }
 }
 }

@@ -1,2 +1,2 @@
-# TwixT
+# TWIXT
 yet to add :)

@@ -5,7 +5,7 @@
 
 int main(){
 // inirtialising to mt holes.
-hole board[24][24];
+hole board[26][26];
 reset(&board);
 
 char task[50];
@@ -35,10 +35,10 @@ while(1){
     char *cmd=strtok(task," ");
     
     if (strcmp(cmd,"help")==0 ){
-        printf(" status - displays the board\n");
+        printf(" status - displays the current state of board\n");
         printf(" exit - to exit the game\n");
         printf(" resign - if u want to give up\n");
-        printf(" pegin - to place the peg :: format, pegin row col\n");
+        printf(" pegin - to place the peg :: format- pegin row col\n");
     }
     
     if (strcmp(cmd,"status")==0 ){
@@ -46,6 +46,8 @@ while(1){
     }
     if (strcmp(cmd,"exit")==0 ){
         printf(" u lose to me\n");
+        free(p);
+        //and free all the mallocs
         break; 
     }
 
@@ -66,7 +68,7 @@ while(1){
             continue;
         }
         int r=atoi(row),c = atoi(col);
-        updmove(&board,p->clr,r-1,c-1);
+        updmove(&board,p->clr,r,c);
     }
 }
 }

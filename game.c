@@ -2,16 +2,16 @@
 #include<string.h>
 #include<stdlib.h>
 #include "game.h"
-void reset(hole (*board)[24][24]){
-    for (int i = 0; i < 24; i++){
-        for (int j = 0; j < 24; j++){
+void reset(hole (*board)[26][26]){
+    for (int i = 0; i < 26; i++){
+        for (int j = 0; j < 26; j++){
             (*board)[i][j].role=0;
         }
     }
 }
 
-void updmove(hole (*board)[24][24],int player,int row ,int col){// pass argument as &board
-    if (row >23 || col > 23 || row <0 || col <0){
+void updmove(hole (*board)[26][26],int player,int row ,int col){// pass argument as &board
+    if (row >24 || col > 24 || row <1 || col <1){
         printf("!!! not a valid hole :)\n");
     }
 
@@ -20,14 +20,23 @@ void updmove(hole (*board)[24][24],int player,int row ,int col){// pass argument
     return ;
 }   
 
-void status(hole (*board)[24][24]){
+void status(hole (*board)[26][26]){
 
-    for (int i = 0; i < 24; i++)
+    for (int i = 0; i < 26; i++)
     {
-        for (int j = 0; j < 24; j++){
-            if ((*board)[i][j].role==0)printf("_ ");
-            else if ((*board)[i][j].role==1)printf("R ");
-            else if ((*board)[i][j].role==2)printf("B ");    
+        for (int j = 0; j < 26; j++){
+            if((i==0 && j==0) || (i==0 && j==25) || (i==25 && j==0)||(i==25 && j==25))
+                printf("+ ");
+            else if(i==0 )printf("- ");
+            else if(j==0)printf("| ");
+            else if(i==25 )printf("- ");
+            else if(j==25)printf("| ");
+            else if(i>0 && i<25 &&j>0 && j<25){
+                if ((*board)[i][j].role==0)printf(". ");
+                else if ((*board)[i][j].role==1)printf("R ");
+                else if ((*board)[i][j].role==2)printf("B ");  
+            }
+              
         }
         printf("\n");
     }

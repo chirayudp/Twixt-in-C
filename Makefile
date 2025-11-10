@@ -5,7 +5,7 @@ CFLG = -Wall -Wextra -std=c11
 # Object files
 OBG = interface.o game.o
 # Final executable name
-TARG = ctwixt
+TARG = run
 	
 # Default rule
 $(TARG): $(OBG)

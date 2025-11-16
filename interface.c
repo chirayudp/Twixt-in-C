@@ -11,6 +11,7 @@ reset(&board);\
 char task[50];
 printf("~|| TRIXT ||~\n~>player1 choose ur color[R/B]\n");
 printf("~> ");
+printf("DEAL WITH SEGMENTATION FAULT IN RESIGN\n");
 fgets(task,sizeof(task),stdin);
 task[strcspn(task,"\n")]=0;
 player *p1=malloc(sizeof(player));
@@ -56,10 +57,13 @@ while(1){
         if ( row==NULL || col == NULL )
         {
             printf("!!! not a valid hole :)\n");
+
+            continue;
         }
         else{
             int r=atoi(row),c = atoi(col);
-            updmove(&board,curr->clr,r,c);
+            int st=updmove(&board,curr->clr,r,c);
+            if(st==0)continue;
             printf("\n");
             status(&board);
             printf("\n");
@@ -79,15 +83,24 @@ while(1){
             status(&board);
             printf(" B won :)\n");
         }
-        else if (p1->clr==2){
+        else if (curr->clr==2){
             printf("B resigned!\n");
             status(&board);
             printf(" R won :)\n");
         }
         printf("~> Do u want to play again?[y/n]\n");
-        char u;printf("~>"); scanf("%c",&u);
-        if (u=='y' || u=='Y'){
+        char u[3];printf("~>"); fgets(u,sizeof(u),stdin);
+        if (u[0]=='y' || u[0]=='Y'){
             reset(&board);
+            printf("~> ");
+            if(curr->clr==1){
+                printf("start with R\n");
+                status(&board);
+            }
+            else if (curr->clr==2){
+                printf("start with B\n");
+                status(&board);
+            }
             continue;
         }
         else {

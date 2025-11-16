@@ -24,7 +24,7 @@ typedef struct player {
 
 void reset(hole (*board)[26][26]);
 void status(hole (*board)[26][26]);
-void updmove(hole (*board)[26][26],int player,int row ,int col);
+int updmove(hole (*board)[26][26],int player,int row ,int col);
 
 
 

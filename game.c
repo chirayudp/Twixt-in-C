@@ -10,15 +10,15 @@ void reset(hole (*board)[26][26]){
     }
 }
 
-void updmove(hole (*board)[26][26],int player,int row ,int col){// pass argument as &board
+int updmove(hole (*board)[26][26],int player,int row ,int col){// pass argument as &board
     if (row >24 || col > 24 || row <1 || col <1 ||(row==1 && col==1) || (row==1 && col==24) || (row==24 && col==1)||(row==24 && col==24)){
         printf("!!! not a valid hole :)\n");
-        return ;
+        return 0;
     }
     if ((*board)[row][col].role != 0)
     {
         printf("!!! sorry hole not available :)\n");
-        return ;
+        return 0;
     }
     if(row==1){
         (*board)[0][col].role=player;
@@ -34,7 +34,7 @@ void updmove(hole (*board)[26][26],int player,int row ,int col){// pass argument
     }
     (*board)[row][col].role = player;
     
-    return ;
+    return 1;
 }   
 
 void status(hole (*board)[26][26]){

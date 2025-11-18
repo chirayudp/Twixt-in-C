@@ -13,7 +13,7 @@ void reset(hole (*board)[26][26]){
 int updmove(hole (*board)[26][26],int player,int row ,int col){// pass argument as &board
     if (row >24 || col > 24 || row <1 || col <1 ||(row==1 && col==1) || (row==1 && col==24) || (row==24 && col==1)||(row==24 && col==24)){
         printf("!!! not a valid hole :)\n");
-        return 0;
+        return 0    ;
     }
     if ((*board)[row][col].role != 0)
     {

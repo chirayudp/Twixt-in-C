@@ -9,9 +9,8 @@ hole board[26][26];
 reset(&board);\
 
 char task[50];
-printf("~|| TRIXT ||~\n~>player1 choose ur color[R/B]\n");
+printf("~ TwixT ~\n~>player1 choose ur color[R/B]\n");
 printf("~> ");
-printf("DEAL WITH SEGMENTATION FAULT IN RESIGN\n");
 fgets(task,sizeof(task),stdin);
 task[strcspn(task,"\n")]=0;
 player *p1=malloc(sizeof(player));
@@ -70,14 +69,14 @@ while(1){
         } 
     }
 
-    if (strcmp(cmd,"help")==0 ){
+    else if (strcmp(cmd,"help")==0 ){
         printf(" exit - to exit the game\n");
         printf(" resign - want to give up?\n");
         printf(" pegin - to place the peg :: format- pegin row col\n");
     }
     
    
-    if (strcmp(cmd,"resign")==0 ){
+    else if (strcmp(cmd,"resign")==0 ){
         if(curr->clr==1){
             printf("R resigned!\n");
             status(&board);
@@ -110,7 +109,7 @@ while(1){
         }
         
     } 
-    if (strcmp(cmd,"exit")==0 ){
+    else if (strcmp(cmd,"exit")==0 ){
         if(curr->clr==1){
             printf("R resigned!\n");
             printf(" B won :)\n");
@@ -123,6 +122,9 @@ while(1){
         free(p2);
         //and free all the mallocs
         break; 
+    }
+    else{
+        continue;
     }
 
 
